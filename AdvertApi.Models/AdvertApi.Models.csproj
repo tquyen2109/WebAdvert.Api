@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Quyen Tran</Authors>
+    <Company>None</Company>
+    <Product>Web Advert Microservices</Product>
+    <PackageProjectUrl>https://github.com/tquyen2109/WebAdvert.Api</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tquyen2109/WebAdvert.Api</RepositoryUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>AdvertApi.Models.QuyenTran</PackageId>
   </PropertyGroup>
 
 </Project>

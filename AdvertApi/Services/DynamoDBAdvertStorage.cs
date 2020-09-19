@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.Runtime;
+using Amazon;
 
 namespace AdvertApi.Services
 {
@@ -30,6 +32,26 @@ namespace AdvertApi.Services
                 }
             }
             return dbModel.Id;
+        }
+
+        public async Task<bool> CheckHealthAsync()
+        {
+            Console.WriteLine("Health checking...");
+            try
+            {
+                using (var client = new AmazonDynamoDBClient(new StoredProfileAWSCredentials(),
+                     RegionEndpoint.USEast2))
+                {
+                    var tableData = await client.DescribeTableAsync("Adverts");
+                    return string.Compare(tableData.Table.TableStatus, "active", true) == 0;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
 
         public async Task Confirm(ConfirmAdvertModel model)
